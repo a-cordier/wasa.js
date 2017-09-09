@@ -1,0 +1,65 @@
+{
+    "name": "wasa.js",
+    "productName": "wasa.js",
+    "version": "1.0.0",
+    "description": "Web Audio Swiss Army",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "lint": "eslint src"
+    },
+    "keywords": [],
+    "author": "acordier",
+    "license": "MIT",
+    "config": {
+        "forge": {
+            "make_targets": {
+                "win32": [
+                    "squirrel"
+                ],
+                "darwin": [
+                    "zip"
+                ],
+                "linux": [
+                    "deb",
+                    "rpm"
+                ]
+            },
+            "electronPackagerConfig": {
+                "packageManager": "yarn"
+            },
+            "electronWinstallerConfig": {
+                "name": "teapot"
+            },
+            "electronInstallerDebian": {},
+            "electronInstallerRedhat": {},
+            "github_repository": {
+                "owner": "",
+                "name": ""
+            },
+            "windowsStoreConfig": {
+                "packageName": "",
+                "name": "teapot"
+            }
+        }
+    },
+    "dependencies": {
+        "lodash.isnil": "^4.0.0",
+        "lodash.noop": "^3.0.1"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.2.3",
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-preset-env": "^1.6.0",
+        "babel-preset-react": "^6.24.1",
+        "electron-forge": "^3.2.0",
+        "electron-prebuilt-compile": "1.7.5",
+        "eslint": "^3",
+        "eslint-config-airbnb": "^15",
+        "eslint-plugin-import": "^2",
+        "eslint-plugin-jsx-a11y": "^5",
+        "eslint-plugin-react": "^7"
+    }
+}
