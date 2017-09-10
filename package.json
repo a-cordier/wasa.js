@@ -9,7 +9,7 @@
         "package": "electron-forge package",
         "make": "electron-forge make",
         "lint": "eslint src",
-        "test": "ava"
+        "test": "ava --verbose"
     },
     "ava": {
         "files": [

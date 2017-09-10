@@ -1,7 +1,11 @@
 import test from 'ava'
 import { Dispatcher, Events } from './dispatcher'
 
-test((t) => {
+test('Events has a CHANGE entry', (t) => {
+	t.truthy(Object.keys(Events).includes('CHANGE'))
+})
+
+test('Dispatcher catches dispatched events', (t) => {
 	Dispatcher.subscribe(Events.CHANGE, (data) => {
 		t.deepEqual(data, { value: 1 })
 	})
