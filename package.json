@@ -3,12 +3,21 @@
     "productName": "wasa.js",
     "version": "1.0.0",
     "description": "Web Audio Swiss Army",
-    "main": "src/app/index.js",
+    "main": "src/main/index.js",
     "scripts": {
         "start": "electron-forge start",
         "package": "electron-forge package",
         "make": "electron-forge make",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "test": "ava"
+    },
+    "ava": {
+        "files": [
+            "src/test/**/*.spec.js"
+        ],
+        "source": [
+            "src/main/**/*.js"
+        ]
     },
     "keywords": [],
     "author": "acordier",
@@ -51,6 +60,7 @@
         "lodash.noop": "^3.0.1"
     },
     "devDependencies": {
+        "ava": "^0.22.0",
         "babel-eslint": "^7.2.3",
         "babel-plugin-transform-async-to-generator": "^6.24.1",
         "babel-preset-env": "^1.6.0",
@@ -62,6 +72,6 @@
         "eslint-plugin-import": "^2",
         "eslint-plugin-jsx-a11y": "^5",
         "eslint-plugin-react": "^7",
-        "karma": "^1.7.1"
+        "karma-mocha": "^1.3.0"
     }
 }
