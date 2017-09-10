@@ -5,14 +5,14 @@ export const ValueModel = ({ init = constant(0), range }) => {
 	let value = init()
 	return {
 		setValue(v) {
-			value = scale(range, v)
+			value = unscale(range, v)
 			Dispatcher.dispatch({
 				type: Events.CHANGE,
 				data: v,
 			})
 		},
 		getValue() {
-			return unscale(range, value)
+			return scale(range, value)
 		},
 	}
 }
@@ -22,14 +22,14 @@ export const AudioModel = ({ range, param, init = constant(param.value) }) => {
 	p.value = init()
 	return {
 		setValue(v) {
-			p.value = scale(range, v)
+			p.value = unscale(range, v)
 			Dispatcher.dispatch({
 				type: Events.CHANGE,
 				data: v,
 			})
 		},
 		getValue() {
-			return unscale(range, p.value)
+			return scale(range, p.value)
 		},
 	}
 }

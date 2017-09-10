@@ -1,5 +1,5 @@
 import test from 'ava'
-import { Dispatcher, Events } from './dispatcher'
+import { Dispatcher, Events } from '.'
 
 test('Events has a CHANGE entry', (t) => {
 	t.truthy(Object.keys(Events).includes('CHANGE'))
