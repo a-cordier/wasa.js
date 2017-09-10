@@ -1,4 +1,4 @@
-import { Sequencer } from './sound/core'
+import { Sequencer, AudioModel } from './sound/core'
 
 const App = () => {
 	const audioContext = new AudioContext()
