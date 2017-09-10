@@ -23,9 +23,10 @@ export const Note = ({ note, octave, duration }) => ({
  * @param {number} octave - Octave value for note
  */
 export const getFrequency = (note, octave) => {
-	const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
+	// const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
+	const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 	const base = 4 // base octave
-	const n = notes.indexOf(note)
+	const n = notes.indexOf(note) - notes.indexOf('A')
 	const f0 = 440 // base frequency
 	const a = 2 ** (1 / 12)
 	const m = octave - base >= 0 ? ((octave - base) + 1) : 1 / ((base - octave) + 1) // multiplier

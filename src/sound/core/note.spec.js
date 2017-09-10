@@ -1,9 +1,9 @@
 import test from 'ava'
 import { getFrequency } from '.'
 
-test('Note B3 converts to 246.94 Hz', (t) => {
-	const frequency = getFrequency('B', 3)
-	t.is(246.94, Number(frequency.toFixed(2)))
+test('Note C3 converts to 130.81 Hz', (t) => {
+	const frequency = getFrequency('C', 3)
+	t.is(130.81, Number(frequency.toFixed(2)))
 })
 
 test('Note A3 converts to 220 Hz', (t) => {
