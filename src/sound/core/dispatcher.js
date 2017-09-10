@@ -10,12 +10,13 @@ export const Dispatcher = (() => {
 		dispatch({ type, data }) {
 			subject.next({ type, data })
 		},
-		subscribe({ type, data }, op) {
+		subscribe(type, op) {
 			subject
 				.filter(action => action.type === type)
 				.subscribe((action) => {
 					op(action.data)
 				})
+			return this
 		},
 	}
 })()
