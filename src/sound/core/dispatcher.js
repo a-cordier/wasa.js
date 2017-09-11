@@ -13,8 +13,8 @@ export const Dispatcher = (() => {
 		subscribe(type, op) {
 			subject
 				.filter(action => action.type === type)
-				.subscribe((action) => {
-					op(action.data)
+				.subscribe(({ data }) => {
+					op(data)
 				})
 			return this
 		},
