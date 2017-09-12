@@ -31,6 +31,9 @@ export const AudioModel = ({ range, param, init = constant(param.value) }) => {
 		getValue() {
 			return scale(range, p.value)
 		},
+		getParam() {
+			return param
+		},
 	}
 }
 
