@@ -51,9 +51,8 @@ export const AudioContextMock = (sandbox) => {
 		Object.keys(AudioContextMethods).reduce((a, k) => {
 			const c = Object.create(null)
 			c[k] = sandbox.spy(AudioContextMethods, k)
-			return Object.assign(a, c)
-		},
-			{}),
+			return Object.assign({}, a, c)
+		}, {}),
 		{
 			getOscillatorNodes() {
 				return oscillators
