@@ -14,7 +14,6 @@ export const AudioContextMock = (sandbox) => {
 		connect: sandbox.spy(),
 	})
 
-
 	const createOscillator = () => ({
 		frequency: AudioParam(),
 		connect: sandbox.spy(),
@@ -43,19 +42,14 @@ export const AudioContextMock = (sandbox) => {
 			gains.push(gain)
 			return gain
 		},
-		createBiquadFilter() {
-			return createBiquadFilter()
-		},
-		createChannelMerger() {
-			return createChannelMerger()
-		},
+		createBiquadFilter,
+		createChannelMerger,
 	}
 
 	return Object.assign({},
-		AudioContextMethods.reduce((a, c) =>
-			Object.assign(a,
-				{ c: sandbox.spy(AudioContextMethods, AudioContextMethods[c]) },
-				{}),
+		Object.keys(AudioContextMethods).reduce((a, c) => Object.assign(a,
+			{ c: sandbox.spy(AudioContextMethods, c) },
+			{}),
 			{
 				getOscillatorNodes() {
 					return oscillators
