@@ -46,18 +46,21 @@ export const AudioContextMock = (sandbox) => {
 		createChannelMerger,
 	}
 
+
 	return Object.assign({},
-		Object.keys(AudioContextMethods).reduce((a, c) => Object.assign(a,
-			{ c: sandbox.spy(AudioContextMethods, c) },
+		Object.keys(AudioContextMethods).reduce((a, k) => {
+			const c = Object.create(null)
+			c[k] = sandbox.spy(AudioContextMethods, k)
+			return Object.assign(a, c)
+		},
 			{}),
-			{
-				getOscillatorNodes() {
-					return oscillators
-				},
-				getGainNodes() {
-					return gains
-				},
-			}))
+		{
+			getOscillatorNodes() {
+				return oscillators
+			},
+			getGainNodes() {
+				return gains
+			},
+		})
 }
 
-export const AudioContext = sandbox => AudioContextMock(sandbox)

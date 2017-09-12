@@ -1,5 +1,7 @@
 import test from 'ava'
-import { ValueModel, Dispatcher, Events } from '.'
+import sinon from 'sinon'
+import { ValueModel, AudioModel, Dispatcher, Events } from '.'
+import { AudioContextMock } from '../../test/mock/audio-context.mock'
 
 test('ValueModel dispatches a change event on value changes', (t) => {
 	t.plan(1)
@@ -9,3 +11,15 @@ test('ValueModel dispatches a change event on value changes', (t) => {
 	})
 	valueModel.setValue(1)
 })
+
+test('AudioModel dispatches a change event on value changes', (t) => {
+	t.plan(1)
+	const audioContext = AudioContextMock(sinon.sandbox.create())
+	const osc = audioContext.createOscillator()
+	const audioModel = AudioModel({ param: osc })
+	Dispatcher.subscribe(Events.CHANGE, (data) => {
+		t.is(1, data)
+	})
+	audioModel.setValue(1)
+})
+
