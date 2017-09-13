@@ -2,15 +2,17 @@ import { Dispatcher, Events } from './common/dispatcher'
 import { Sequencer } from './core'
 
 export const SequencerComponent = ({ audioContext }) => {
+	let t = 0
 	const sequencer = Sequencer({ audioContext })
 		.onPlay((tick) => {
 			if (tick % 30 === 0) {
 				const osc = audioContext.createOscillator()
 				osc.connect(audioContext.destination)
-				osc.frequency.value = 100
-				osc.type = 'square'
+				osc.frequency.value = t % 4 === 0 ? 1200 : 800
+				osc.type = 'triangle'
 				osc.start()
-				osc.stop(audioContext.currentTime + 0.25)
+				osc.stop(audioContext.currentTime + 0.1)
+				t += 1
 			}
 		})
 		.start()
