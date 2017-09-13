@@ -4,7 +4,6 @@ import { Sequencer } from '.'
 import { AudioContextMock } from '../mock/audio-context.mock'
 
 test('Calling start trigger onPlay handler', (t) => {
-	t.pass()
 	const audioContext = AudioContextMock(sinon.sandbox.create())
 	Sequencer({ audioContext })
 		.onPlay(() => {
