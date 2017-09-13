@@ -13,10 +13,8 @@ export const Sequencer = ({ audioContext }) => {
 
 	const schedule = (op) => {
 		const currentTime = audioContext.currentTime - startTime
-		if (currentTime >= tickTime) {
-			if (stop === false) {
-				op(tick, tempo, division)
-			}
+		if (!stop && currentTime >= tickTime) {
+			op(tick, tempo, division)
 			tickTime = currentTime + (60 / (tempo * division))
 			tick += 1
 		}
@@ -24,7 +22,7 @@ export const Sequencer = ({ audioContext }) => {
 
 	const play = () => {
 		schedule(onPlay)
-		setImmediate(play)
+		requestAnimationFrame(play)
 	}
 
 	return {

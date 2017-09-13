@@ -1,14 +1,14 @@
-import { Dispatcher, Events } from './sound/core/dispatcher'
-import { Sequencer } from './sound/core'
+import { Dispatcher, Events } from './common/dispatcher'
+import { Sequencer } from './core'
 
 export const SequencerComponent = ({ audioContext }) => {
 	const sequencer = Sequencer({ audioContext })
 		.onPlay((tick) => {
-			console.log('tick', tick)
-			if (tick % 64 === 0 && Math.random() > 0.5) {
+			if (tick % 30 === 0) {
 				const osc = audioContext.createOscillator()
 				osc.connect(audioContext.destination)
-				osc.frequency.value = 220 + (220 * Math.random())
+				osc.frequency.value = 100
+				osc.type = 'square'
 				osc.start()
 				osc.stop(audioContext.currentTime + 0.25)
 			}
