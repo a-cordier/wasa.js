@@ -1,7 +1,8 @@
 import test from 'ava'
 import sinon from 'sinon'
-import { ValueModel, AudioModel, Dispatcher, Events } from '.'
-import { AudioContextMock } from '../../test/mock/audio-context.mock'
+import { ValueModel, AudioModel } from '.'
+import { Dispatcher, Events } from '../common'
+import { AudioContextMock } from '../mock/audio-context.mock'
 
 test('ValueModel dispatches a change event on value changes', (t) => {
 	t.plan(1)

@@ -1,5 +1,6 @@
 import constant from 'lodash.constant'
-import { Dispatcher, Events, scale, unscale } from '.'
+import { Dispatcher, Events } from '../common'
+import { scale, unscale } from '.'
 
 export const ValueModel = ({ init = constant(0), range }) => {
 	let value = init()
