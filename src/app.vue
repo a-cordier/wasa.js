@@ -1,3 +1,11 @@
+<style>
+button {
+  background-color: #B4D000;
+  color: #fff;
+  border: none;
+}
+</style>
+
 <template>
   <div>
     <button v-on:click="start" id="start">Start</button>
