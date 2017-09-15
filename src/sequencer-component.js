@@ -1,22 +1,9 @@
-import { Dispatcher, Events } from './common/dispatcher'
-import { Sequencer } from './core'
+import { ipcRenderer as ipc } from 'electron'
 
-export const SequencerComponent = ({ audioContext }) => {
-	let t = 0
-	const sequencer = Sequencer({ audioContext })
-		.onPlay((tick) => {
-			if (tick % 30 === 0) {
-				const osc = audioContext.createOscillator()
-				osc.connect(audioContext.destination)
-				osc.frequency.value = t % 4 === 0 ? 1200 : 800
-				osc.type = 'triangle'
-				osc.start()
-				osc.stop(audioContext.currentTime + 0.1)
-				t += 1
-			}
-		})
-		.start()
-
+export const SequencerComponent = () => {
+	ipc.on('new-note', (event, data) => {
+		console.log(data)
+	})
 	customElements.define('wasa-sequencer', class extends HTMLElement {
 		constructor() {
 			super()
@@ -25,22 +12,27 @@ export const SequencerComponent = ({ audioContext }) => {
 
 		connectedCallback() {
 			this.root.innerHTML = `
+				<style>
+				 button {
+					 background-color: #b4d455;
+					 border: 0;
+					 box-shadow:none;
+					 border-radius: 0px;
+					 color: #fff;
+				 }
+				</style>
+				<input id="tempo" type="range" min="0" max="100"/>
 				<button id="start">START</button>
 				<button id="stop">STOP</button>
 			`
 			this.root.querySelector('#start').addEventListener('click', () => {
-				sequencer.start()
-				Dispatcher.dispatch({
-					type: Events.CHANGE,
-					data: 'start sequencer',
-				})
+				ipc.send('sequencer-start')
 			})
 			this.root.querySelector('#stop').addEventListener('click', () => {
-				sequencer.stop()
-				Dispatcher.dispatch({
-					type: Events.CHANGE,
-					data: 'stop sequencer',
-				})
+				ipc.send('sequencer-stop')
+			})
+			this.root.querySelector('#tempo').addEventListener('input', (event) => {
+				ipc.send('tempo-changed', Number(event.target.value))
 			})
 		}
 	})

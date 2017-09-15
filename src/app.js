@@ -1,16 +1,10 @@
 import { SequencerComponent } from './sequencer-component'
-import { Dispatcher, Events } from './common/dispatcher'
+import { audioContext } from './core'
 
-const App = () => {
-	const audioContext = new AudioContext()
-	return {
-		bootstrap() {
-			SequencerComponent({ audioContext })
-			Dispatcher.subscribe(Events.CHANGE, (data) => {
-				console.log(data)
-			})
-		},
-	}
-}
+const App = () => ({
+	bootstrap() {
+		SequencerComponent({ audioContext })
+	},
+})
 
 App().bootstrap()

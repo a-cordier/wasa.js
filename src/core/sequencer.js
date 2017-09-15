@@ -22,7 +22,7 @@ export const Sequencer = ({ audioContext }) => {
 
 	const play = () => {
 		schedule(onPlay)
-		requestAnimationFrame(play)
+		setImmediate(play)
 	}
 
 	return {

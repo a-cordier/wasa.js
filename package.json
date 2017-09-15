@@ -3,7 +3,7 @@
     "productName": "wasa.js",
     "version": "1.0.0",
     "description": "Web Audio Swiss Army",
-    "main": "src/index.js",
+    "main": "src/main.js",
     "scripts": {
         "start": "electron-forge start",
         "package": "electron-forge package",

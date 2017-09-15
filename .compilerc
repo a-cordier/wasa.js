@@ -10,8 +10,7 @@
                 "electron": 1.7
               }
             }
-          ],
-          "react"
+          ]
         ],
         "plugins": [
           "transform-async-to-generator"
