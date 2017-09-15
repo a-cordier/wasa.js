@@ -1,20 +1,13 @@
 import { app, BrowserWindow, ipcMain as ipc } from 'electron'
 import { enableLiveReload } from 'electron-compile'
+import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+
+const isDevMode = process.execPath.match(/[\\/]electron/)
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 let backgroundWindow
-
-ipc.on('sequencer-start', () => {
-	backgroundWindow.webContents.send('sequencer-start')
-})
-ipc.on('sequencer-stop', () => {
-	backgroundWindow.webContents.send('sequencer-stop')
-})
-ipc.on('new-note', (event, data) => {
-	backgroundWindow.webContents.send('new-note', data)
-})
 
 const createWindow = () => {
 	// Create the browser window.
@@ -36,6 +29,14 @@ const createWindow = () => {
 		mainWindow = null
 		backgroundWindow.close()
 	})
+
+	if (isDevMode) {
+		enableLiveReload()
+		installExtension(VUEJS_DEVTOOLS)
+			.then(() => {
+				mainWindow.webContents.openDevTools()
+			})
+	}
 }
 
 const createBackgroundWindow = () => {
@@ -77,3 +78,12 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+ipc.on('sequencer-start', () => {
+	backgroundWindow.webContents.send('sequencer-start')
+})
+ipc.on('sequencer-stop', () => {
+	backgroundWindow.webContents.send('sequencer-stop')
+})
+ipc.on('sequencer-tick', (event, tick) => {
+	backgroundWindow.webContents.send('sequencer-tick', tick)
+})

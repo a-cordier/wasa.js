@@ -5,7 +5,7 @@ let t = 0
 const sequencer = Sequencer({ audioContext })
 	.onPlay((tick) => {
 		if (tick % 30 === 0) {
-			ipc.send('new-note', 'new note')
+			ipc.send('sequencer-tick', tick)
 			const osc = audioContext.createOscillator()
 			osc.connect(audioContext.destination)
 			osc.frequency.value = t % 4 === 0 ? 1200 : 800

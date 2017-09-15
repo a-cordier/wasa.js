@@ -1,1 +1,2 @@
-export { Dispatcher, Events } from './dispatcher'
+export { Dispatcher } from './dispatcher'
+export { Events } from './events'

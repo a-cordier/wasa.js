@@ -1,10 +1,5 @@
-import { SequencerComponent } from './sequencer-component'
-import { audioContext } from './core'
+import Vue from 'vue'
+import App from './app.vue'
 
-const App = () => ({
-	bootstrap() {
-		SequencerComponent({ audioContext })
-	},
-})
-
-App().bootstrap()
+const app = new Vue(App).$mount('#wasa-app')
+app.text = ''
