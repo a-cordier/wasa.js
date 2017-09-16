@@ -10,6 +10,7 @@ button {
   <div>
     <button v-on:click="start" id="start">Start</button>
     <button v-on:click="stop" id="stop">Stop</button>
+    Tick: {{tick}}
   </div>
 </template>
 
@@ -18,8 +19,15 @@ import { ipcRenderer as ipc } from 'electron'
 
 export default {
   name: 'wasa-app',
+  created() {
+    ipc.on('sequencer-tick', (event, tick) => {
+      this.tick = tick
+    })
+  },
   data() {
-    return {}
+    return {
+      tick: 0,
+    }
   },
   methods: {
     start() {
@@ -27,6 +35,7 @@ export default {
     },
     stop() {
       ipc.send('sequencer-stop')
+      this.tick = 0
     }
   },
 }

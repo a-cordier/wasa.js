@@ -17,7 +17,7 @@ const createWindow = () => {
 	})
 
 	// and load the index.html of the app.
-	mainWindow.loadURL(`file://${__dirname}/app.html`)
+	mainWindow.loadURL(`file://${__dirname}/index.html`)
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools()
@@ -85,5 +85,5 @@ ipc.on('sequencer-stop', () => {
 	backgroundWindow.webContents.send('sequencer-stop')
 })
 ipc.on('sequencer-tick', (event, tick) => {
-	backgroundWindow.webContents.send('sequencer-tick', tick)
+	mainWindow.webContents.send('sequencer-tick', tick)
 })

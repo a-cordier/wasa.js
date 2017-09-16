@@ -1,5 +1,5 @@
 import { ipcRenderer as ipc } from 'electron'
-import { audioContext, Sequencer } from './core'
+import { audioContext, Sequencer } from './wasa/core'
 
 let t = 0
 const sequencer = Sequencer({ audioContext })
