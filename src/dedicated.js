@@ -6,7 +6,7 @@ let t = 0
 
 const sequencer = Sequencer({ audioContext })
 	.onPlay((tick) => {
-		if (tick % 30 === 0) {
+		if (tick % 12 === 0) {
 			ipc.send('sequencer-tick', tick)
 			const osc = audioContext.createOscillator()
 			osc.connect(audioContext.destination)
