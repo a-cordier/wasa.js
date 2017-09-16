@@ -7,10 +7,10 @@ export const Sequencer = ({ audioContext }) => {
 	let startTime = 0 // start time
 	let tickTime = 0 // next tick time
 	let tick = 0
-	let onPlay = noop
+	let onTick = noop
 	let onStop = noop
 	let onStart = noop
-	let tempo = 160
+	let tempo = 50
 
 	const schedule = (op) => {
 		const currentTime = audioContext.currentTime - startTime
@@ -22,7 +22,7 @@ export const Sequencer = ({ audioContext }) => {
 	}
 
 	const play = () => {
-		schedule(onPlay)
+		schedule(onTick)
 		WorkerTimer.setTimeout(play, 0)
 	}
 
@@ -66,8 +66,8 @@ export const Sequencer = ({ audioContext }) => {
 			onStop = op
 			return this
 		},
-		onPlay(op) {
-			onPlay = op
+		onTick(op) {
+			onTick = op
 			return this
 		},
 	}
