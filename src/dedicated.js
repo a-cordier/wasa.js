@@ -1,7 +1,9 @@
 import { ipcRenderer as ipc } from 'electron'
-import { audioContext, Sequencer } from './wasa/core'
+import { Sequencer } from './wasa/core'
+import { audioContext } from './audioContext'
 
 let t = 0
+
 const sequencer = Sequencer({ audioContext })
 	.onPlay((tick) => {
 		if (tick % 30 === 0) {

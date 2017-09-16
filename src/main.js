@@ -9,6 +9,7 @@ const isDevMode = process.execPath.match(/[\\/]electron/)
 let mainWindow
 let backgroundWindow
 
+
 const createWindow = () => {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
@@ -18,9 +19,6 @@ const createWindow = () => {
 
 	// and load the index.html of the app.
 	mainWindow.loadURL(`file://${__dirname}/index.html`)
-
-	// Open the DevTools.
-	mainWindow.webContents.openDevTools()
 	// Emitted when the window is closed.
 	mainWindow.on('closed', () => {
 		// Dereference the window object, usually you would store windows
@@ -43,9 +41,6 @@ const createBackgroundWindow = () => {
 	backgroundWindow = new BrowserWindow({ show: false })
 	backgroundWindow.loadURL(`file://${__dirname}/dedicated.html`)
 	backgroundWindow.on('closed', () => {
-		// Dereference the window object, usually you would store windows
-		// in an array if your app supports multi windows, this is the time
-		// when you should delete the corresponding element.
 		backgroundWindow = null
 	})
 }
