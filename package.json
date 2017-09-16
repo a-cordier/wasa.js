@@ -67,7 +67,8 @@
         "lodash.noop": "^3.0.1",
         "vue": "^2.4.4",
         "vue-template-compiler": "^2.4.4",
-        "vueify": "^9.4.1"
+        "vueify": "^9.4.1",
+        "worker-timer": "^1.1.0"
     },
     "devDependencies": {
         "@ava/babel-preset-stage-4": "^1.1.0",
