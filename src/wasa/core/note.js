@@ -28,7 +28,7 @@ export const getFrequency = (note, octave) => {
 	const n = 'A' // base note
 	const f = 440 // base frequency
 	const d = notes.indexOf(note) - notes.indexOf(n) // delta
-	const a = 2 ** (1 / 12)
+	const a = 2 ** (1 / 12) // semi tone factor
 	const m = octave - o >= 0 ? ((octave - o) + 1) : 1 / ((o - octave) + 1) // multiplier
 	return f * (a ** d) * m
 }
