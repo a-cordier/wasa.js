@@ -18,7 +18,7 @@ button {
 
 <script>
 import { ipcRenderer as ipc } from 'electron'
-import { audioContext } from './audioContext'
+import { audioContext } from './audio-context'
 
 export default {
   name: 'wasa-app',

@@ -1,11 +1,11 @@
 import { ipcRenderer as ipc } from 'electron'
 import { Sequencer } from './wasa/core'
-import { audioContext } from './audioContext'
+import { audioContext } from './audio-context'
 
 let t = 0
 
 const sequencer = Sequencer({ audioContext })
-	.onPlay((tick) => {
+	.onTick((tick) => {
 		if (tick % 12 === 0) {
 			ipc.send('sequencer-tick', tick)
 			const osc = audioContext.createOscillator()
