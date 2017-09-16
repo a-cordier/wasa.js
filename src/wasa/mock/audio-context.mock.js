@@ -1,10 +1,12 @@
+import WorkerTimer from 'worker-timer'
+
 export const AudioContextMock = (sandbox) => {
 	const oscillators = []
 	const gains = []
 
 	let currentTime = 0
 
-	setInterval(() => {
+	WorkerTimer.setInterval(() => {
 		currentTime += 1
 	}, 1000)
 
