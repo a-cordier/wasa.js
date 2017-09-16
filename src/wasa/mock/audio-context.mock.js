@@ -2,6 +2,12 @@ export const AudioContextMock = (sandbox) => {
 	const oscillators = []
 	const gains = []
 
+	let currentTime = 0
+
+	setInterval(() => {
+		currentTime += 1
+	}, 1000)
+
 	const AudioParam = () => ({
 		setValueAtTime: sandbox.spy(),
 		cancelScheduledValues: sandbox.spy(),
@@ -51,9 +57,8 @@ export const AudioContextMock = (sandbox) => {
 		Object.keys(AudioContextMethods).reduce((a, k) => {
 			const c = Object.create(null)
 			c[k] = sandbox.spy(AudioContextMethods, k)
-			return Object.assign(a, c)
-		},
-			{}),
+			return Object.assign({}, a, c)
+		}, {}),
 		{
 			getOscillatorNodes() {
 				return oscillators
@@ -61,6 +66,7 @@ export const AudioContextMock = (sandbox) => {
 			getGainNodes() {
 				return gains
 			},
+			currentTime,
 		})
 }
 

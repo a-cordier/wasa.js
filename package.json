@@ -3,7 +3,7 @@
     "productName": "wasa.js",
     "version": "1.0.0",
     "description": "Web Audio Swiss Army",
-    "main": "src/index.js",
+    "main": "src/main.js",
     "scripts": {
         "start": "electron-forge start",
         "package": "electron-forge package",
@@ -60,9 +60,14 @@
         }
     },
     "dependencies": {
+        "electron-compile": "^6.4.1",
+        "electron-devtools-installer": "^2.0.1",
         "lodash.constant": "^3.0.0",
         "lodash.isnil": "^4.0.0",
-        "lodash.noop": "^3.0.1"
+        "lodash.noop": "^3.0.1",
+        "vue": "^2.4.4",
+        "vue-template-compiler": "^2.4.4",
+        "vueify": "^9.4.1"
     },
     "devDependencies": {
         "@ava/babel-preset-stage-4": "^1.1.0",

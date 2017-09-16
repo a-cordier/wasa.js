@@ -1,0 +1,94 @@
+{
+  "name": "wasa.js",
+  "productName": "wasa.js",
+  "version": "1.0.0",
+  "description": "Web Audio Swiss Army",
+  "main": "src/main.js",
+  "scripts": {
+      "start": "electron-forge start",
+      "package": "electron-forge package",
+      "make": "electron-forge make",
+      "lint": "eslint src",
+      "test": "ava --verbose"
+  },
+  "ava": {
+      "files": [
+          "**/*.spec.js"
+      ],
+      "source": [
+          "src/**/*.js",
+          "!src/**/*.spec.js"
+      ],
+      "require": [
+          "babel-register"
+      ],
+      "babel": "inherit"
+  },
+  "keywords": [],
+  "author": "acordier",
+  "license": "MIT",
+  "config": {
+      "forge": {
+          "make_targets": {
+              "win32": [
+                  "squirrel"
+              ],
+              "darwin": [
+                  "zip"
+              ],
+              "linux": [
+                  "deb",
+                  "rpm"
+              ]
+          },
+          "electronPackagerConfig": {
+              "packageManager": "yarn"
+          },
+          "electronWinstallerConfig": {
+              "name": "teapot"
+          },
+          "electronInstallerDebian": {},
+          "electronInstallerRedhat": {},
+          "github_repository": {
+              "owner": "",
+              "name": ""
+          },
+          "windowsStoreConfig": {
+              "packageName": "",
+              "name": "teapot"
+          }
+      }
+  },
+  "dependencies": {
+      "electron-compile": "^6.4.1",
+      "electron-devtools-installer": "^2.0.1",
+      "lodash.constant": "^3.0.0",
+      "lodash.isnil": "^4.0.0",
+      "lodash.noop": "^3.0.1",
+      "vue": "^2.4.4",
+      "vue-template-compiler": "^2.4.4",
+      "vueify": "^9.4.1",
+      "worker-timer": "^1.1.0"
+  },
+  "devDependencies": {
+      "@ava/babel-preset-stage-4": "^1.1.0",
+      "ava": "^0.22.0",
+      "babel-eslint": "^7.2.3",
+      "babel-plugin-transform-async-to-generator": "^6.24.1",
+      "babel-plugin-transform-runtime": "^6.23.0",
+      "babel-preset-env": "^1.6.0",
+      "babel-preset-es2017": "^6.24.1",
+      "babel-preset-react": "^6.24.1",
+      "babel-preset-stage-3": "^6.24.1",
+      "babel-register": "^6.26.0",
+      "electron-forge": "^3.2.0",
+      "electron-prebuilt-compile": "1.7.5",
+      "eslint": "^3",
+      "eslint-config-airbnb": "^15",
+      "eslint-plugin-import": "^2",
+      "eslint-plugin-jsx-a11y": "^5",
+      "eslint-plugin-react": "^7",
+      "karma-mocha": "^1.3.0",
+      "sinon": "^3.2.1"
+  }
+}

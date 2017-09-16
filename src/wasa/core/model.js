@@ -1,5 +1,6 @@
 import constant from 'lodash.constant'
-import { Dispatcher, Events, scale, unscale } from '.'
+import { Dispatcher, Events } from '../common'
+import { scale, unscale } from '.'
 
 export const ValueModel = ({ init = constant(0), range }) => {
 	let value = init()
@@ -30,6 +31,9 @@ export const AudioModel = ({ range, param, init = constant(param.value) }) => {
 		},
 		getValue() {
 			return scale(range, p.value)
+		},
+		getParam() {
+			return param
 		},
 	}
 }
