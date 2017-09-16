@@ -7,8 +7,6 @@ const isDevMode = process.execPath.match(/[\\/]electron/)
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-let backgroundWindow
-
 
 const createWindow = () => {
 	// Create the browser window.
@@ -25,7 +23,6 @@ const createWindow = () => {
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
 		mainWindow = null
-		backgroundWindow.close()
 	})
 
 	if (isDevMode) {
@@ -37,20 +34,12 @@ const createWindow = () => {
 	}
 }
 
-const createBackgroundWindow = () => {
-	backgroundWindow = new BrowserWindow({ show: false })
-	backgroundWindow.loadURL(`file://${__dirname}/dedicated.html`)
-	backgroundWindow.on('closed', () => {
-		backgroundWindow = null
-	})
-}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
 	createWindow()
-	createBackgroundWindow()
 	enableLiveReload()
 })
 
@@ -71,14 +60,3 @@ app.on('activate', () => {
 	}
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
-ipc.on('sequencer-start', () => {
-	backgroundWindow.webContents.send('sequencer-start')
-})
-ipc.on('sequencer-stop', () => {
-	backgroundWindow.webContents.send('sequencer-stop')
-})
-ipc.on('sequencer-tick', (event, tick) => {
-	mainWindow.webContents.send('sequencer-tick', tick)
-})

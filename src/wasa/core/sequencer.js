@@ -2,7 +2,7 @@ import noop from 'lodash.noop'
 import WorkerTimer from 'worker-timer'
 
 export const Sequencer = ({ audioContext }) => {
-	let division = 96 // ticks per quarter note
+	let division = 24 // ticks per quarter note
 	let stop = true
 	let startTime = 0 // start time
 	let tickTime = 0 // next tick time
@@ -10,8 +10,12 @@ export const Sequencer = ({ audioContext }) => {
 	let onTick = noop
 	let onStop = noop
 	let onStart = noop
-	let tempo = 50
+	let tempo = 130
 
+	/**
+	 * Schedule is called every time a new tick occurs
+	 * @param {function} op - on tick callback function
+	 */
 	const schedule = (op) => {
 		const currentTime = audioContext.currentTime - startTime
 		if (!stop && currentTime >= tickTime) {
