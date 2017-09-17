@@ -1,50 +1,47 @@
 import noop from 'lodash.noop'
 
 export const Kick = ({ audioContext }) => {
-	const channelMerger = audioContext.createChannelMerger(2)
-	const gain1 = audioContext.createGain()
-	const gain2 = audioContext.createGain()
-	gain1.connect(channelMerger, 0, 0)
-	gain2.connect(channelMerger, 0, 1)
-
-	let osc1 = {
-		stop: noop,
-		disconnect: noop,
-	}
-
-	let osc2 = {
-		stop: noop,
-		disconnect: noop,
-	}
+	const output = audioContext.createGain()
+	const gains = [
+		audioContext.createGain(),
+		audioContext.createGain(),
+	]
+	gains.forEach((gain) => {
+		gain.connect(output)
+	})
+	let oscs = []
 
 	return {
 		noteOn(freq = 100, time = audioContext.currentTime, duration = 0.25) {
-			osc1.stop(time)
-			osc2.stop(time)
-			osc1.disconnect()
-			osc2.disconnect()
-			osc1 = audioContext.createOscillator()
-			osc2 = audioContext.createOscillator()
-			osc1.type = 'square'
-			osc2.type = 'sine'
-			gain1.gain.setValueAtTime(0.5, time)
-			gain2.gain.setValueAtTime(0.5, time)
-			osc1.frequency.setValueAtTime(freq, time)
-			osc2.frequency.setValueAtTime(freq, time)
-			osc1.frequency.exponentialRampToValueAtTime(0.001, time + duration)
-			osc2.frequency.exponentialRampToValueAtTime(0.001, time + duration)
-			gain1.gain.exponentialRampToValueAtTime(0.001, time + duration)
-			gain2.gain.exponentialRampToValueAtTime(0.001, time + duration)
-			osc1.connect(gain1)
-			osc2.connect(gain2)
-			osc1.start(time)
-			osc2.start(time)
-			osc1.stop(time + 0.71)
-			osc2.stop(time + 0.71)
+			oscs.forEach((osc, i) => {
+				osc.stop(time)
+				osc.disconnect()
+				osc.frequency.cancelScheduledValues(time)
+				gains[i].gain.cancelScheduledValues(time)
+			})
+			oscs = [
+				audioContext.createOscillator(),
+				audioContext.createOscillator(),
+			]
+			oscs[0].type = 'square'
+			oscs[1].type = 'sine'
+			oscs.forEach((osc, i) => {
+				osc.frequency.setValueAtTime(freq, time)
+				osc.frequency.setValueAtTime(freq, time)
+				osc.frequency.exponentialRampToValueAtTime(0.001, time + duration)
+				osc.frequency.exponentialRampToValueAtTime(0.001, time + duration)
+				osc.connect(gains[i])
+				osc.start(time)
+				osc.stop(time + duration)
+			})
+			gains.forEach((gain) => {
+				gain.gain.setValueAtTime(0.5, time)
+				gain.gain.exponentialRampToValueAtTime(0.001, time + duration)
+			})
 		},
 		noteOff: noop,
 		connect({ connect, input }) {
-			channelMerger.connect(input)
+			output.connect(input)
 			return { connect }
 		},
 	}
