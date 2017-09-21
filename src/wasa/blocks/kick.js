@@ -1,5 +1,3 @@
-import noop from 'lodash.noop'
-
 export const Kick = ({ audioContext }) => {
 	const output = audioContext.createGain()
 	const gains = [
@@ -10,15 +8,12 @@ export const Kick = ({ audioContext }) => {
 		gain.connect(output)
 	})
 	let oscs = []
+	let freq = 100
+	let finalFreq = 1
+	let duration = 0.25
 
 	return {
-		noteOn(freq = 100, time = audioContext.currentTime, duration = 0.25) {
-			oscs.forEach((osc, i) => {
-				osc.stop(time)
-				osc.disconnect()
-				osc.frequency.cancelScheduledValues(time)
-				gains[i].gain.cancelScheduledValues(time)
-			})
+		noteOn(time = audioContext.currentTime) {
 			oscs = [
 				audioContext.createOscillator(),
 				audioContext.createOscillator(),
@@ -27,9 +22,7 @@ export const Kick = ({ audioContext }) => {
 			oscs[1].type = 'sine'
 			oscs.forEach((osc, i) => {
 				osc.frequency.setValueAtTime(freq, time)
-				osc.frequency.setValueAtTime(freq, time)
-				osc.frequency.exponentialRampToValueAtTime(0.001, time + duration)
-				osc.frequency.exponentialRampToValueAtTime(0.001, time + duration)
+				osc.frequency.exponentialRampToValueAtTime(finalFreq, time + duration)
 				osc.connect(gains[i])
 				osc.start(time)
 				osc.stop(time + duration)
@@ -39,10 +32,29 @@ export const Kick = ({ audioContext }) => {
 				gain.gain.exponentialRampToValueAtTime(0.001, time + duration)
 			})
 		},
-		noteOff: noop,
+		noteOff(time = audioContext.currentTime + duration) {
+			oscs.forEach((osc, i) => {
+				osc.stop(time)
+				osc.disconnect()
+				osc.frequency.cancelScheduledValues(time)
+				gains[i].gain.cancelScheduledValues(time)
+			})
+		},
 		connect({ connect, input }) {
 			output.connect(input)
 			return { connect }
+		},
+		setFinalFreq(value) {
+			finalFreq = value
+			return this
+		},
+		setFreq(value) {
+			freq = value
+			return this
+		},
+		setDuration(value) {
+			duration = value
+			return this
 		},
 	}
 }

@@ -7,14 +7,15 @@
 </head>
 
 <body>
-  <div id="wasa-app"></div>
+  <div id="app">
+  </div>
 </body>
 
 <script>
   import Vue from 'vue'
-  import App from './app'
+  import App from './components/app'
 
-  const app = new Vue(App).$mount('#wasa-app')
+  new Vue(App).$mount("#app")
 </script>
 
 </html>
