@@ -1,7 +1,10 @@
 import { Subject } from 'rxjs'
 
 export const Events = Object.freeze({
-	CHANGE: 0,
+	SEQUENCER_START: 0,
+	SEQUENCER_STOP: 1,
+	TEMPO_CHANGE: 2,
+	CHANGE: 999,
 })
 
 export const Dispatcher = (() => {

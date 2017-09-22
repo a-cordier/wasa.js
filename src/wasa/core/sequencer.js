@@ -2,28 +2,46 @@ import noop from 'lodash.noop'
 import WorkerTimer from 'worker-timer'
 
 export const Sequencer = ({ audioContext }) => {
-	let division = 96 // ticks per quarter note
-	let stop = true
+	/* time values */
+	let division = 4 // ticks per quarter note
 	let startTime = 0 // start time
 	let tickTime = 0 // next tick time
 	let tick = 0
-	let onPlay = noop
+	/* state change callbacks */
+	let onTick = noop
 	let onStop = noop
 	let onStart = noop
-	let tempo = 160
+	let onLoop = noop
+	/* state */
+	let stop = true
+	let loop = true
+	let tempo = 130
+	let length = 16
 
+	let timer
+
+	/**
+	 * Schedule is called every time a new tick occurs
+	 * @param {function} op - on tick callback function
+	 */
 	const schedule = (op) => {
-		const currentTime = audioContext.currentTime - startTime
+		const currentTime = (audioContext.currentTime - startTime)
 		if (!stop && currentTime >= tickTime) {
 			op(tick, tempo, division)
 			tickTime = currentTime + (60 / (tempo * division))
 			tick += 1
+			if (loop && tick === length) {
+				tick = 0
+				onLoop()
+			}
 		}
 	}
 
 	const play = () => {
-		schedule(onPlay)
-		WorkerTimer.setTimeout(play, 0)
+		schedule(onTick)
+		timer = WorkerTimer.setInterval(() => {
+			schedule(onTick)
+		}, 0)
 	}
 
 	return {
@@ -35,6 +53,7 @@ export const Sequencer = ({ audioContext }) => {
 			return this
 		},
 		stop() {
+			WorkerTimer.clearInterval(timer)
 			stop = true
 			tickTime = 0
 			tick = 0
@@ -43,6 +62,20 @@ export const Sequencer = ({ audioContext }) => {
 		},
 		isStarted() {
 			return !stop
+		},
+		setLoopMode(value) {
+			loop = value
+			return this
+		},
+		getLoopMode() {
+			return loop
+		},
+		setLength(value) {
+			length = value
+			return this
+		},
+		getLength() {
+			return length
 		},
 		setDivision(value) {
 			division = value
@@ -58,6 +91,9 @@ export const Sequencer = ({ audioContext }) => {
 		getTempo() {
 			return tempo
 		},
+		getTime() {
+			return audioContext.currentTime - startTime
+		},
 		onStart(op) {
 			onStart = op
 			return this
@@ -66,8 +102,12 @@ export const Sequencer = ({ audioContext }) => {
 			onStop = op
 			return this
 		},
-		onPlay(op) {
-			onPlay = op
+		onTick(op) {
+			onTick = op
+			return this
+		},
+		onLoop(op) {
+			onLoop = op
 			return this
 		},
 	}
