@@ -3,8 +3,7 @@
 </style>
 
 <template>
-  <wasa-transport>
-  </wasa-transport>
+  <wasa-transport></wasa-transport>
 </template>
 
 <script>
@@ -40,6 +39,9 @@ export default {
       })
       .subscribe(Events.SEQUENCER_STOP, () => {
         this.sequencer.stop()
+      })
+      .subscribe(Events.TEMPO_CHANGE, ({ value }) => {
+        this.sequencer.setTempo(value);
       })
   },
   components: {

@@ -10,8 +10,5 @@ test('Dispatcher catches dispatched events', (t) => {
 	Dispatcher.subscribe(Events.CHANGE, (data) => {
 		t.deepEqual(data, { value: 1 })
 	})
-	Dispatcher.dispatch({
-		type: Events.CHANGE,
-		data: { value: 1 },
-	})
+	Dispatcher.dispatch(Events.CHANGE, { value: 1 })
 })

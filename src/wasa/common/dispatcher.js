@@ -10,7 +10,7 @@ export const Events = Object.freeze({
 export const Dispatcher = (() => {
 	const subject = new Subject()
 	return {
-		dispatch({ type, data }) {
+		dispatch(type, data) {
 			subject.next({ type, data })
 		},
 		subscribe(type, op) {
