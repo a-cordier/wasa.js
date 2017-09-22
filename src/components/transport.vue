@@ -19,15 +19,10 @@ import { Dispatcher, Events } from '../wasa/common/dispatcher'
 export default {
     methods: {
         start() {
-            Dispatcher.dispatch({
-                type: Events.SEQUENCER_START,
-            })
+            Dispatcher.dispatch(Events.SEQUENCER_START)
         },
         stop() {
-            Dispatcher.dispatch({
-                type: Events.SEQUENCER_STOP,
-          
-          })
+            Dispatcher.dispatch(Events.SEQUENCER_STOP)
         },
     }
 }

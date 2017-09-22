@@ -7,10 +7,7 @@ export const ValueModel = ({ init = constant(0), range }) => {
 	return {
 		setValue(v) {
 			value = unscale(range, v)
-			Dispatcher.dispatch({
-				type: Events.CHANGE,
-				data: v,
-			})
+			Dispatcher.dispatch(Events.CHANGE, v)
 		},
 		getValue() {
 			return scale(range, value)
@@ -24,10 +21,7 @@ export const AudioModel = ({ range, param, init = constant(param.value) }) => {
 	return {
 		setValue(v) {
 			p.value = unscale(range, v)
-			Dispatcher.dispatch({
-				type: Events.CHANGE,
-				data: v,
-			})
+			Dispatcher.dispatch(Events.CHANGE, v)
 		},
 		getValue() {
 			return scale(range, p.value)
