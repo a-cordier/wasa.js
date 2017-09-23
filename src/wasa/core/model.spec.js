@@ -7,9 +7,10 @@ import { AudioContextMock } from '../mock/audio-context.mock'
 test('ValueModel dispatches a change event on value changes', (t) => {
 	t.plan(1)
 	const valueModel = ValueModel({})
-	Dispatcher.subscribe(Events.CHANGE, (data) => {
-		t.is(1, data)
-	})
+	Dispatcher.as(Events.CHANGE)
+		.subscribe((data) => {
+			t.is(1, data)
+		})
 	valueModel.setValue(1)
 })
 
@@ -18,9 +19,10 @@ test('AudioModel dispatches a change event on value changes', (t) => {
 	const audioContext = AudioContextMock(sinon.sandbox.create())
 	const osc = audioContext.createOscillator()
 	const audioModel = AudioModel({ param: osc })
-	Dispatcher.subscribe(Events.CHANGE, (data) => {
-		t.is(1, data)
-	})
+	Dispatcher.as(Events.CHANGE)
+		.subscribe((data) => {
+			t.is(1, data)
+		})
 	audioModel.setValue(1)
 })
 

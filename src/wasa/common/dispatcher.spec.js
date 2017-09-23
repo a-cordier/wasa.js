@@ -7,8 +7,9 @@ test('Events has a CHANGE entry', (t) => {
 
 test('Dispatcher catches dispatched events', (t) => {
 	t.plan(1)
-	Dispatcher.subscribe(Events.CHANGE, (data) => {
-		t.deepEqual(data, { value: 1 })
-	})
+	Dispatcher.as(Events.CHANGE)
+		.subscribe((data) => {
+			t.deepEqual(data, { value: 1 })
+		})
 	Dispatcher.dispatch(Events.CHANGE, { value: 1 })
 })

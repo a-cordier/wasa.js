@@ -1,51 +1,45 @@
 <style>
-
+ #wasa-app {
+   height: 100%;
+ }
 </style>
 
 <template>
-  <wasa-transport></wasa-transport>
+  <div id="wasa-app">
+    <transport></transport>
+    <drum-sequencer></drum-sequencer>
+  </div>
 </template>
 
 <script>
 import { audioContext } from '../audio-context'
 import { Sequencer } from '../wasa/core'
-import { Kick } from '../wasa/blocks/kick'
 import { Dispatcher, Events } from '../wasa/common/dispatcher'
-import WasaTransport from './transport'
-
-const kick = Kick({ audioContext })
-  .setDuration(1)
-  .setFinalFreq(10)
-  .setFreq(100)
-
-kick.connect({
-  input: audioContext.destination,
-})
+import Transport from './transport'
+import DrumSequencer from './drum-sequencer'
 
 export default {
   created() {
     this.sequencer = Sequencer({ audioContext })
       .onTick((tick, tempo, division) => {
-        this.tick = tick
-        this.time = this.sequencer.getTime()
-        if (tick % division === 0) {
-          kick.noteOff(audioContext.currentTime)
-          kick.noteOn(audioContext.currentTime)
-        }
+        Dispatcher.dispatch(Events.SEQUENCER_TICK, tick)
       })
-    Dispatcher
-      .subscribe(Events.SEQUENCER_START, () => {
+    Dispatcher.as(Events.SEQUENCER_START)
+      .subscribe(() => {
         this.sequencer.start()
       })
-      .subscribe(Events.SEQUENCER_STOP, () => {
+    Dispatcher.as(Events.SEQUENCER_STOP)
+      .subscribe(() => {
         this.sequencer.stop()
       })
-      .subscribe(Events.TEMPO_CHANGE, ({ value }) => {
-        this.sequencer.setTempo(value);
+    Dispatcher.as(Events.TEMPO_CHANG)
+      .subscribe(({ value }) => {
+        this.sequencer.setTempo({ value });
       })
   },
   components: {
-    WasaTransport,
+    Transport,
+    DrumSequencer,
   }
 }
 </script>

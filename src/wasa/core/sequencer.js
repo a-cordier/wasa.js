@@ -27,9 +27,9 @@ export const Sequencer = ({ audioContext }) => {
 	const schedule = (op) => {
 		const currentTime = (audioContext.currentTime - startTime)
 		if (!stop && currentTime >= tickTime) {
+			tick += 1
 			op(tick, tempo, division)
 			tickTime = currentTime + (60 / (tempo * division))
-			tick += 1
 			if (loop && tick === length) {
 				tick = 0
 				onLoop()

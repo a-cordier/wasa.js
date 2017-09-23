@@ -1,15 +1,37 @@
- <style>
-button {
-    background-color: #B4D000;
-    color: #fff;
-    border: none;
+ <style lang="sass" scoped>
+ #transport {
+    button {
+        display: inline-block;
+        position: relative;
+        width: 30px;
+        height: 18px;
+        // line-height: 18px;
+        border: none;
+        background-color: #444;
+        color: #8ab9b5;
+        margin: 5px 5px 0px 0px;
+        transition: 0.2s;
+        transition-delay: 0.2s;
+        box-shadow: 0 1px 2px 0 rgba(0, 12, 12, .2);
+        cursor: pointer;
+        :focus {
+            outline: 0;
+        }
+        i {
+            font-size: 10px;
+        }
+    }
 }
 </style>
   
  <template>
-    <div id="wasa-transport">
-        <button id="start" v-on:click="start">Start</button>
-        <button id="stop" v-on:click="stop">Stop</button>
+    <div id="transport">
+        <button id="start" v-on:click="start">
+            <i class="fa fa-play" aria-hidden="true"></i>
+        </button>
+        <button id="stop" v-on:click="stop">
+            <i class="fa fa-stop" aria-hidden="true"></i>
+        </button>
     </div>
 </template>
 
