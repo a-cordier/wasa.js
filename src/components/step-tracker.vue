@@ -12,6 +12,8 @@
         }
         &.active {
             background-color: #ff5574;
+            box-shadow: 0px 0px 5px 0px #ff5574;
+
         }
     }
 }
@@ -19,8 +21,9 @@
 
 <template>
     <div id="tracker">
-        <div v-for="step in steps" :key="step.id" 
-            class="step" :class="[step.state]"></div>
+        <template v-for="step in steps">
+            <div class="step" :key="step.id" :class="[step.state]"></div>
+        </template>
     </div>
 </template>
 
@@ -33,10 +36,10 @@ export default {
         Dispatcher.as(Events.SEQUENCER_TICK)
             .subscribe((tick) => {
                 const step = this.steps.find(step => step.state === 'active')
-                if(step) {
+                if (step) {
                     step.state = 'inactive'
                 }
-                this.steps[tick-1].state = 'active'
+                this.steps[tick - 1].state = 'active'
             })
         Dispatcher.as(Events.SEQUENCER_STOP)
             .subscribe(() => {
