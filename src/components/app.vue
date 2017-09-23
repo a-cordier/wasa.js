@@ -1,6 +1,5 @@
 <style>
  #wasa-app {
-  background-color: #2b2d42;
  }
 </style>
 
@@ -32,7 +31,7 @@ export default {
       .subscribe(() => {
         this.sequencer.stop()
       })
-    Dispatcher.as(Events.TEMPO_CHANG)
+    Dispatcher.as(Events.TEMPO_CHANGE)
       .subscribe(({ value }) => {
         this.sequencer.setTempo({ value });
       })
