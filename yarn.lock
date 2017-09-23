@@ -5563,6 +5563,10 @@ querystring@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
+ramda@^0.24.1:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.24.1.tgz#c3b7755197f35b8dc3502228262c4c91ddb6b857"
+
 random-path@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/random-path/-/random-path-0.1.1.tgz#f8f4d36f75a134ca15fd39c7d7505fbf163b634c"
