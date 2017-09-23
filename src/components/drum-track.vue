@@ -9,9 +9,12 @@
         height: 3vw;
         &.inactive {
             background-color: #ccc;
+            box-shadow: 0px 4px 1px 1px rgba(0,0,0,0.3), inset 0px 0px 0px 1px rgba(0,0,0,0.1);
+            transition: all 0.1s ease-in-out;
         }
         &.active {
             background-color: #8ab9b5;
+            box-shadow: 0px 1px 0px 1px rgba(0,0,0,0.3), inset 0px 0px 0px 1px rgba(0,0,0,0.1);;
         }
         cursor: pointer;
     }
@@ -20,7 +23,7 @@
 
 <template>
     <div id="track">
-        <div v-for="step in steps" :key="step.id" class="step" v-bind:class="[step.state]" v-on:click="toggleState(step)"></div>
+        <div v-for="step in steps" :key="step.id" class="step" :class="[step.state]" @click="toggleState(step)"></div>
     </div>
 </template>
 

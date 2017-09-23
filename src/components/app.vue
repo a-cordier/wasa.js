@@ -1,6 +1,6 @@
 <style>
  #wasa-app {
-   height: 100%;
+  background-color: #2b2d42;
  }
 </style>
 

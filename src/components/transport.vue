@@ -26,10 +26,10 @@
   
  <template>
     <div id="transport">
-        <button id="start" v-on:click="start">
+        <button id="start" @click="start">
             <i class="fa fa-play" aria-hidden="true"></i>
         </button>
-        <button id="stop" v-on:click="stop">
+        <button id="stop" @click="stop">
             <i class="fa fa-stop" aria-hidden="true"></i>
         </button>
     </div>

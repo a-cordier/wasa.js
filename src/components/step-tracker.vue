@@ -20,7 +20,7 @@
 <template>
     <div id="tracker">
         <div v-for="step in steps" :key="step.id" 
-            class="step" v-bind:class="[step.state]"></div>
+            class="step" :class="[step.state]"></div>
     </div>
 </template>
 
