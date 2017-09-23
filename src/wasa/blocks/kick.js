@@ -35,7 +35,6 @@ export const Kick = ({ audioContext }) => {
 		noteOff(time = audioContext.currentTime + duration) {
 			oscs.forEach((osc, i) => {
 				osc.stop(time)
-				osc.disconnect()
 				osc.frequency.cancelScheduledValues(time)
 				gains[i].gain.cancelScheduledValues(time)
 			})
