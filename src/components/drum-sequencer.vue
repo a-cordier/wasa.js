@@ -1,7 +1,6 @@
 <style lang="sass" scoped>
 #sequencer {
     padding: 10px 10px 10px 10px;
-
     background-color: #444;
     margin-top: 10px;
 }
@@ -10,7 +9,7 @@
 <template>
     <div id="sequencer">
         <drum-track></drum-track>
-        <drum-track></drum-track>
+        <drum-track :drum="hi"></drum-track>
         <drum-track :drum="hat"></drum-track>
         <drum-track :drum="snare"></drum-track>
         <drum-track :drum="kick"></drum-track>
@@ -27,12 +26,20 @@ import { Hat } from '../wasa/blocks/hat'
 import { audioContext } from '../audio-context'
 
 const kick = Kick({ audioContext })
+    .setDuration(0.75)
+    .setFreq(100)
+    .setFinalFreq(33)
 kick.connect({ input: audioContext.destination })
 
 const snare = Snare({ audioContext })
 snare.connect({ input: audioContext.destination })
 
+const hi = Hat({ audioContext })
+    .setDuration(0.75)
+hi.connect({ input: audioContext.destination })
+
 const hat = Hat({ audioContext })
+    .setDuration(0.1)
 hat.connect({ input: audioContext.destination })
 
 export default {
@@ -46,6 +53,7 @@ export default {
     data: () => ({
         kick,
         snare,
+        hi,
         hat,
     })
 }

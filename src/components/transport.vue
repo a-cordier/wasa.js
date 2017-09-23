@@ -3,8 +3,8 @@
     button {
         display: inline-block;
         position: relative;
-        width: 30px;
-        height: 18px;
+        width: 4vw;
+        height: 3vw;
         // line-height: 18px;
         border: none;
         background-color: #444;
@@ -26,10 +26,10 @@
   
  <template>
     <div id="transport">
-        <button id="start" v-on:click="start">
+        <button id="start" @click="start">
             <i class="fa fa-play" aria-hidden="true"></i>
         </button>
-        <button id="stop" v-on:click="stop">
+        <button id="stop" @click="stop">
             <i class="fa fa-stop" aria-hidden="true"></i>
         </button>
     </div>
@@ -37,8 +37,12 @@
 
 <script>
 import { Dispatcher, Events } from '../wasa/common/dispatcher'
+import Knob from './knob'
 
 export default {
+    components: {
+        Knob,
+    },
     methods: {
         start() {
             Dispatcher.dispatch(Events.SEQUENCER_START)
