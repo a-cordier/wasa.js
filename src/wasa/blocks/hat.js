@@ -17,7 +17,7 @@ export const Hat = ({ audioContext }) => {
 	highpass.connect(output)
 
 	return {
-		noteOn(time = audioContext.currentTime) {
+		noteOn(time = audioContext.currentTime, velocity = 1) {
 			ratios.forEach((ratio) => {
 				osc = audioContext.createOscillator()
 				osc.type = 'square'
@@ -28,7 +28,7 @@ export const Hat = ({ audioContext }) => {
 				osc.stop(time + duration)
 			})
 			output.gain.setValueAtTime(0.00001, time)
-			output.gain.exponentialRampToValueAtTime(1, time + 0.02)
+			output.gain.exponentialRampToValueAtTime(1 * velocity, time + 0.02)
 			output.gain.exponentialRampToValueAtTime(0.3, time + 0.03)
 			output.gain.exponentialRampToValueAtTime(0.00001, time + duration)
 		},
