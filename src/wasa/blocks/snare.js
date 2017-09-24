@@ -23,18 +23,18 @@ export const Snare = ({ audioContext }) => {
 	let frequency = 80
 
 	return {
-		noteOn(time = audioContext.currentTime) {
+		noteOn(time = audioContext.currentTime, velocity = 1) {
 			osc = audioContext.createOscillator()
 			osc.type = 'triangle'
 			osc.connect(oscGain)
 			noise = audioContext.createBufferSource()
 			noise.buffer = buffer
 			noise.connect(filter)
-			noiseGain.gain.setValueAtTime(1, time)
+			noiseGain.gain.setValueAtTime(1 * velocity, time)
 			noiseGain.gain.exponentialRampToValueAtTime(0.01, time + (duration - 0.1))
 			noise.start(time)
 			osc.frequency.setValueAtTime(frequency, time)
-			oscGain.gain.setValueAtTime(0.7, time)
+			oscGain.gain.setValueAtTime(1 * velocity, time)
 			oscGain.gain.exponentialRampToValueAtTime(0.01, time + (duration - 0.1))
 			osc.start(time)
 			osc.stop(time + duration)

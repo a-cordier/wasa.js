@@ -13,12 +13,12 @@ export const Kick = ({ audioContext }) => {
 	let duration = 0.25
 
 	return {
-		noteOn(time = audioContext.currentTime) {
+		noteOn(time = audioContext.currentTime, velocity = 1) {
 			oscs = [
 				audioContext.createOscillator(),
 				audioContext.createOscillator(),
 			]
-			oscs[0].type = 'square'
+			oscs[0].type = 'triangle'
 			oscs[1].type = 'sine'
 			oscs.forEach((osc, i) => {
 				osc.frequency.setValueAtTime(freq, time)
@@ -28,7 +28,7 @@ export const Kick = ({ audioContext }) => {
 				osc.stop(time + duration)
 			})
 			gains.forEach((gain) => {
-				gain.gain.setValueAtTime(0.5, time)
+				gain.gain.setValueAtTime(1 * velocity, time)
 				gain.gain.exponentialRampToValueAtTime(0.001, time + duration)
 			})
 		},
@@ -54,6 +54,9 @@ export const Kick = ({ audioContext }) => {
 		setDuration(value) {
 			duration = value
 			return this
+		},
+		getOutputGain() {
+			return output.gain
 		},
 	}
 }

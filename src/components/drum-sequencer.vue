@@ -3,6 +3,9 @@
     padding: 10px 10px 10px 10px;
     background-color: #444;
     margin-top: 10px;
+    .tracker {
+        margin-top: 20px 0 10px 0;
+    }
 }
 </style>
 
@@ -13,7 +16,7 @@
         <drum-track :drum="hat"></drum-track>
         <drum-track :drum="snare"></drum-track>
         <drum-track :drum="kick"></drum-track>
-        <step-tracker></step-tracker>
+        <step-tracker class="tracker"></step-tracker>
     </div>
 </template>
 
@@ -27,8 +30,8 @@ import { audioContext } from '../audio-context'
 
 const kick = Kick({ audioContext })
     .setDuration(0.75)
-    .setFreq(100)
-    .setFinalFreq(33)
+    .setFreq(80)
+    .setFinalFreq(1)
 kick.connect({ input: audioContext.destination })
 
 const snare = Snare({ audioContext })
