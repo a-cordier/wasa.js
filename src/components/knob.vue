@@ -1,20 +1,19 @@
 <style lang="sass" scoped>
 .container {
     user-select: none;
+    outline:none;
     .knob { 
       display: block;
       margin: auto;
-      width: 2.5vw;
-      height: 2.5vw;
 
     circle.mainCircle {
       fill: #ccc;
-      stroke: #8ab9b5;
+      stroke: #999;
       stroke-width: 5px;
     }
 
     circle.mainCircle.active {
-      fill: #8ab9b5;
+      fill: #999;
     }
 
     line {
@@ -65,8 +64,8 @@ export default {
         x: event.pageX,
         y: event.pageY,
       }
-      document.addEventListener('mouseup', this.desactivate)
       document.addEventListener('mousemove', this.drag)
+      document.addEventListener('mouseup', this.desactivate)
       this.active = true
     },
     desactivate() {
@@ -75,12 +74,14 @@ export default {
       document.removeEventListener('mousemove', this.drag)
     },
     drag(event) {
-      const incr = this.origin.y - event.pageY
-      if(Math.abs(incr * 3) < 160) {
-        this.angle = (incr * 3)
+      event.preventDefault()
+      const incr = (this.origin.y - event.pageY)
+      const angle = this.angle + incr
+      if (incr < 0 && angle > -160 || incr >= 0 && angle < 160) {
+        this.angle = angle
+        const value = scale({ min: -160, max: 160 }, this.angle)
+        this.$emit('update', value)
       }
-      const value = scale({ min: -160, max: 160 }, this.angle)
-      this.$emit('update', value)
     },
   },
 }
