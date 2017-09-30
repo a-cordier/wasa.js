@@ -5955,7 +5955,7 @@ rx@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
 
-rxjs@^5.1.1:
+rxjs@^5.1.1, rxjs@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.3.tgz#0758cddee6033d68e0fd53676f0f3596ce3d483f"
   dependencies:
@@ -6970,6 +6970,14 @@ vueify@^9.4.1:
     vue-hot-reload-api "^2.0.1"
     vue-template-compiler "^2.0.0-alpha.8"
     vue-template-es2015-compiler "^1.2.2"
+
+wasa@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/wasa/-/wasa-0.0.1.tgz#3dd62661da447b5b375bc67fe6200c44c6ce5979"
+  dependencies:
+    ramda "^0.24.1"
+    rxjs "^5.4.3"
+    worker-timer "^1.1.0"
 
 webidl-conversions@^2.0.0:
   version "2.0.1"
