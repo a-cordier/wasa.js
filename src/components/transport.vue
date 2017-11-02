@@ -18,7 +18,7 @@
             outline: 0;
         }
         i {
-            font-size: 10px;
+            font-size: 1.2vw;
         }
     }
 }
