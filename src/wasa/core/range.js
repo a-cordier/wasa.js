@@ -1,4 +1,4 @@
-import isNil from 'lodash.isnil'
+import { isNil } from 'ramda'
 
 /**
  * Unnormalizes a [0-1] range value back to the given range

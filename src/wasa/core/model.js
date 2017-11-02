@@ -1,8 +1,8 @@
-import constant from 'lodash.constant'
+import { identity } from 'ramda'
 import { Dispatcher, Events } from '../common'
 import { scale, unscale } from '.'
 
-export const ValueModel = ({ init = constant(0), range }) => {
+export const ValueModel = ({ init = identity(0), range }) => {
 	let value = init()
 	return {
 		setValue(v) {
@@ -15,7 +15,7 @@ export const ValueModel = ({ init = constant(0), range }) => {
 	}
 }
 
-export const AudioModel = ({ range, param, init = constant(param.value) }) => {
+export const AudioModel = ({ range, param, init = identity(param.value) }) => {
 	const p = param
 	p.value = init()
 	return {
