@@ -6961,14 +6961,18 @@ vueify@^9.4.1:
     vue-template-compiler "^2.0.0-alpha.8"
     vue-template-es2015-compiler "^1.2.2"
 
-wasa@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/wasa/-/wasa-0.0.12.tgz#b5afcbf7b2a4d8ecc8ba4fadddc2d991c3acb9bc"
+wasa@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/wasa/-/wasa-0.0.13.tgz#48dcb18fa5b233e3b80f605f79cb0bc3e3c6a81c"
   dependencies:
     babel-preset-2017 "^0.0.0"
     ramda "^0.24.1"
     rxjs "^5.4.3"
     worker-timer "^1.1.0"
+
+web-audio-mock@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/web-audio-mock/-/web-audio-mock-0.1.9.tgz#23d46d6376ec9a18acb73afb236e2ba5b43c83f2"
 
 webidl-conversions@^2.0.0:
   version "2.0.1"

@@ -11,25 +11,26 @@
 
 <template>
     <div id="sequencer">
-        <drum-track></drum-track>
         <drum-track :drum="hi"></drum-track>
         <drum-track :drum="hat"></drum-track>
         <drum-track :drum="snare"></drum-track>
         <drum-track :drum="kick"></drum-track>
         <step-tracker class="tracker"></step-tracker>
+        <drum-params :drum="kick"></drum-params>
     </div>
 </template>
 
 <script>
 import StepTracker from './step-tracker'
 import DrumTrack from './drum-track'
+import DrumParams from './drum-params'
 import { Kick, Snare, Hat } from 'wasa'
 import { audioContext } from '../audio-context'
 
 const kick = Kick({ audioContext })
     .setDuration(0.75)
-    .setFreq(80)
-    .setFinalFreq(1)
+    .setFrequency(80)
+    .setFinalFrequency(1)
 kick.connect({ input: audioContext.destination })
 
 const snare = Snare({ audioContext })
@@ -47,6 +48,7 @@ export default {
     components: {
         StepTracker,
         DrumTrack,
+        DrumParams,
     },
     created() {
 
