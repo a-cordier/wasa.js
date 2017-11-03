@@ -12,8 +12,7 @@
 
 <script>
 import { audioContext } from '../audio-context'
-import { Sequencer } from '../wasa/core'
-import { Dispatcher, Events } from '../wasa/common/dispatcher'
+import { Sequencer, Dispatcher, Events } from 'wasa'
 import Transport from './transport'
 import DrumSequencer from './drum-sequencer'
 

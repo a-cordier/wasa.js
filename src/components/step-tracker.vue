@@ -29,7 +29,7 @@
 
 <script>
 import { times } from 'ramda'
-import { Dispatcher, Events } from '../wasa/common/dispatcher'
+import { Dispatcher, Events } from 'wasa'
 
 export default {
     created() {

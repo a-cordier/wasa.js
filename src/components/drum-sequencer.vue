@@ -23,9 +23,7 @@
 <script>
 import StepTracker from './step-tracker'
 import DrumTrack from './drum-track'
-import { Kick } from '../wasa/blocks/kick'
-import { Snare } from '../wasa/blocks/snare'
-import { Hat } from '../wasa/blocks/hat'
+import { Kick, Snare, Hat } from 'wasa'
 import { audioContext } from '../audio-context'
 
 const kick = Kick({ audioContext })

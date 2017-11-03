@@ -29,7 +29,7 @@
 
 <script>
 import { isNil } from 'ramda'
-import { Dispatcher, Events } from '../wasa/common/dispatcher'
+import { Dispatcher, Events } from 'wasa'
 import { audioContext } from '../audio-context'
 import Knob from './knob'
 

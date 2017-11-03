@@ -38,7 +38,7 @@
 
 <script>
 import { isNil } from 'ramda'
-import { scale, unscale } from '../wasa/core/range'
+import { scale, unscale } from 'wasa'
 
 export default {
   props: {

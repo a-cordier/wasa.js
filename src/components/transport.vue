@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { Dispatcher, Events } from '../wasa/common/dispatcher'
+import { Dispatcher, Events } from 'wasa'
 import Knob from './knob'
 
 export default {
