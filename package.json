@@ -20,7 +20,8 @@
             "!src/**/*.spec.js"
         ],
         "require": [
-            "babel-register"
+            "babel-register",
+            "./ava/vue-helper"
         ],
         "babel": "inherit"
     },
@@ -67,7 +68,7 @@
         "vue": "^2.4.4",
         "vue-template-compiler": "^2.4.4",
         "vueify": "^9.4.1",
-        "wasa": "^0.0.12",
+        "wasa": "^0.0.13",
         "worker-timer": "^1.1.0"
     },
     "devDependencies": {
@@ -89,6 +90,7 @@
         "eslint-plugin-jsx-a11y": "^5",
         "eslint-plugin-react": "^7",
         "karma-mocha": "^1.3.0",
-        "sinon": "^3.2.1"
+        "sinon": "^3.2.1",
+        "web-audio-mock": "^0.1.9"
     }
 }

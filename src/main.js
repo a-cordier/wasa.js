@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain as ipc } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import { enableLiveReload } from 'electron-compile'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 

@@ -47,7 +47,7 @@ export default {
     },
   },
   created() {
-
+    this.angle = unscale({ min: -160, max: 160 }, this.value)
   },
   computed: {
     rotate() {
