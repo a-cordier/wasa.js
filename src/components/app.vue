@@ -17,7 +17,7 @@
 
 	export default {
 		created() {
-			this.sequencer = Sequencer({audioContext})
+			this.sequencer = Sequencer(audioContext)
 				.onTick((tick, tempo, division) => {
 					Dispatcher.dispatch(Events.SEQUENCER_TICK, tick)
 				})
