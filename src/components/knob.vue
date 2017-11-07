@@ -2,7 +2,7 @@
 .container {
     user-select: none;
     outline:none;
-    .knob { 
+    .knob {
       display: block;
       margin: auto;
 
@@ -29,7 +29,7 @@
 
 <template>
   <div class="container">
-    <svg class="knob" viewBox="0 0 40 40" @mousedown="activate" :transform="rotate">
+    <svg class="knob" viewBox="0 0 40 40" @mousedown="activate" @mousewheel="wheel" :transform="rotate">
       <circle class="mainCircle" cx="20" cy="20" r="15" />
       <line x1="20" y1="15" x2="20" y2="10" />
     </svg>
@@ -76,7 +76,14 @@ export default {
     drag(event) {
       event.preventDefault()
       const incr = (this.origin.y - event.pageY)
-      const angle = this.angle + incr
+      this.updateAngle(incr)
+    },
+    wheel(event) {
+      event.preventDefault()
+	  this.updateAngle(event.wheelDeltaY, 0.25)
+    },
+    updateAngle(incr, ease = 0.5) {
+      const angle = this.angle + (incr * ease)
       if (incr < 0 && angle > -160 || incr >= 0 && angle < 160) {
         this.angle = angle
         const value = scale({ min: -160, max: 160 }, this.angle)
