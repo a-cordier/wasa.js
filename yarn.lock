@@ -6961,9 +6961,9 @@ vueify@^9.4.1:
     vue-template-compiler "^2.0.0-alpha.8"
     vue-template-es2015-compiler "^1.2.2"
 
-wasa@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/wasa/-/wasa-0.0.13.tgz#48dcb18fa5b233e3b80f605f79cb0bc3e3c6a81c"
+wasa@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/wasa/-/wasa-0.0.15.tgz#bf0f02fffe316933f3313c1d8c15936f29dbd723"
   dependencies:
     babel-preset-2017 "^0.0.0"
     ramda "^0.24.1"
