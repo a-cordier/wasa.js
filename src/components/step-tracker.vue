@@ -1,4 +1,4 @@
-<style lang="sass" scoped>
+<style lang="scss" type="text/scss" scoped>
 #tracker {
     margin-top: 10px;
     display: grid;

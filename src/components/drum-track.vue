@@ -1,5 +1,6 @@
-<style lang="sass" scoped>
-#track {
+<style lang="scss" type="text/scss" scoped>
+
+	#track {
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(16, 1fr);

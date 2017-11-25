@@ -30,8 +30,8 @@
 					this.sequencer.stop()
 				})
 			Dispatcher.as(Events.TEMPO_CHANGE)
-				.subscribe(({value}) => {
-					this.sequencer.setTempo({value});
+				.subscribe((value) => {
+					this.sequencer.setTempo(value);
 				})
 		},
 		components: {

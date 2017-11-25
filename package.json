@@ -68,7 +68,7 @@
         "vue": "^2.4.4",
         "vue-template-compiler": "^2.4.4",
         "vueify": "^9.4.1",
-        "wasa": "^0.0.15",
+        "wasa": "^0.0.16",
         "worker-timer": "^1.1.0"
     },
     "devDependencies": {

@@ -1,4 +1,4 @@
-<style lang="sass" scoped>
+<style lang="scss" type="text/scss" scoped>
 	#step {
 		.step {
 			width: 3vw;

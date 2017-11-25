@@ -1,5 +1,6 @@
-<style lang="sass" scoped>
-.container {
+<style lang="scss" type="text/scss" scoped>
+
+	.container {
     user-select: none;
     outline:none;
     .knob {
@@ -22,6 +23,11 @@
       stroke-linecap: round;
     }
 
+	}
+		.label {
+			font-size: 9px;
+			color: white;
+			font-family: "Lucida Console", Monaco, monospace;
   }
 }
 
@@ -33,6 +39,7 @@
       <circle class="mainCircle" cx="20" cy="20" r="15" />
       <line x1="20" y1="15" x2="20" y2="10" />
     </svg>
+	  <span class="label">{{label}}</span>
   </div>
 </template>
 
@@ -45,6 +52,9 @@ export default {
     value: {
       type: Number,
     },
+	  label: {
+		  type: String,
+	  }
   },
   created() {
     this.angle = unscale({ min: -160, max: 160 }, this.value)
