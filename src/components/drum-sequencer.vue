@@ -3,13 +3,16 @@
     padding: 10px 10px 10px 10px;
     background-color: #444;
     margin-top: 10px;
+	width: 850px;
     .tracker {
         margin: 20px 0 10px 0;
     }
 	.panel {
-		display: flex;
-		.slice {
-			margin-right: 10px;
+		margin-top: 10px;
+		display: grid;
+		grid-template-columns: repeat(16, 1fr);
+		.grid-item {
+			justify-self: center;
 		}
 	}
 }
@@ -19,14 +22,17 @@
     <div id="sequencer">
         <drum-track :drum="hi"></drum-track>
         <drum-track :drum="hat"></drum-track>
-        <drum-track :drum="sn"></drum-track>
-        <drum-track :drum="bd1"></drum-track>
-        <drum-track :drum="bd2"></drum-track>
+		<drum-track :drum="rim"></drum-track>
+		<drum-track :drum="snare"></drum-track>
+        <drum-track :drum="bd"></drum-track>
         <step-tracker class="tracker"></step-tracker>
 		<div class="panel">
-			<bd-panel :drum="bd1" class="slice"></bd-panel>
-			<bd-panel :drum="bd2" class="slice"></bd-panel>
-			<sn-panel :drum="sn" class="slice"></sn-panel>
+			<bd-panel :drum="bd" class="grid-item"></bd-panel>
+			<sn-panel :drum="snare" class="grid-item"></sn-panel>
+			<sn-panel :drum="rim" class="grid-item"></sn-panel>
+			<hat-panel :drum="hi" class="grid-item"></hat-panel>
+			<hat-panel :drum="hat" class="grid-item"></hat-panel>
+			<delay-panel :delay="delayBroker" class="grid-item"></delay-panel>
 		</div>
     </div>
 </template>
@@ -36,35 +42,25 @@ import StepTracker from './step-tracker'
 import DrumTrack from './drum-track'
 import BdPanel from './bd-panel'
 import SnPanel from './sn-panel'
-import { Kick, Snare, Hat } from 'wasa'
+import DelayPanel from './delay-panel'
+import HatPanel from './hat-panel'
+import RingModulatorPanel from './ring-modulator-panel'
+
+import BassDrum from '../core/drum-sequencer/bass-drum'
+import HiHat from '../core/drum-sequencer/hi-hat'
+import Snare from '../core/drum-sequencer/snare'
+import RimShot from '../core/drum-sequencer/rim-shot'
+import DelayBroker from '../core/drum-sequencer/delay-broker'
+
 import { audioContext } from '../audio-context'
+import { range } from 'ramda'
 
-const bd1 = Kick(audioContext)
-    .setDurationValue(1)
-    .setFrequencyValue(100)
-	.setFinalFrequencyValue(0.01)
-	.setOutputGainValue(0.5)
-bd1.connect({ input: audioContext.destination })
-
-const bd2 = Kick(audioContext)
-    .setDurationValue(1)
-    .setFrequencyValue(120)
-	.setFinalFrequencyValue(0.01)
-	.setOutputGainValue(0.5)
-bd2.connect({ input: audioContext.destination })
-
-const sn = Snare(audioContext)
-	.setFrequencyValue(350)
-	.setOscMixValue(0.5)
-sn.connect({ input: audioContext.destination })
-
-const hi = Hat(audioContext)
-    .setDuration(0.75)
-hi.connect({ input: audioContext.destination })
-
-const hat = Hat(audioContext)
-    .setDuration(0.1)
-hat.connect({ input: audioContext.destination })
+const bd = BassDrum(audioContext)
+const snare = Snare(audioContext)
+const rim = RimShot(audioContext)
+const hi = HiHat(audioContext)
+const hat = HiHat(audioContext)
+const delayBroker = DelayBroker(audioContext)
 
 export default {
     components: {
@@ -72,16 +68,19 @@ export default {
         DrumTrack,
         BdPanel,
 		SnPanel,
+		HatPanel,
+		DelayPanel,
     },
     created() {
 
     },
     data: () => ({
-        bd1,
-        bd2,
-        sn,
+        bd,
+        snare,
+		rim,
         hi,
         hat,
+		delayBroker,
     })
 }
 </script>
