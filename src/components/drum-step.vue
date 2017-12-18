@@ -1,8 +1,8 @@
 <style lang="scss" type="text/scss" scoped>
 	#step {
 		.step {
-			width: 3vw;
-			height: 3vw;
+			width: 45px;
+			height: 45px;
 			&.inactive {
 				background-color: #ccc;
 				box-shadow: 0px 4px 1px 1px rgba(0, 0, 0, 0.3), inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
@@ -15,6 +15,7 @@
 			cursor: pointer;
 		}
 		.knob {
+			width: 45px;
 			margin: 10px auto 0 auto;
 		}
 	}
@@ -45,9 +46,8 @@
 			Dispatcher.as(Events.SEQUENCER_TICK)
 				.subscribe((tick) => {
 					if (this.state === 'active' && tick === this.tick) {
-						this.drum.noteOff(audioContext.currentTime)
+						this.drum.noteOff(audioContext.currentTime - 0.01)
 						this.drum.noteOn(audioContext.currentTime, this.velocity)
-
 					}
 				})
 		},

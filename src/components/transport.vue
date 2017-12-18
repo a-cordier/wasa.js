@@ -1,10 +1,14 @@
 <style lang="scss" type="text/scss" scoped>
- #transport {
+ .transport {
+	 width: 300px;
+	 display: grid;
+	 grid-template-columns: repeat(16, 1fr);
+	 align-items: flex-end;
 	 button {
 		 display: inline-block;
 		 position: relative;
-		 width: 4vw;
-		 height: 3vw;
+		 width: 50px;
+		 height: 50px;
 		 border: none;
 		 background-color: #444;
 		 color: #8ab9b5;
@@ -21,7 +25,7 @@
 		 }
 	 }
 	 .tempo-spin-box {
-		 height: 3vw;
+		 height: 50px;
 		 display: inline-grid;
 	 }
 
@@ -29,11 +33,11 @@
 </style>
 
 <template>
-    <div id="transport">
-        <button id="start" @click="start">
+    <div class="transport">
+        <button class="start" @click="start">
             <i class="fa fa-play" aria-hidden="true"></i>
         </button>
-        <button id="stop" @click="stop">
+        <button classs="stop" @click="stop">
             <i class="fa fa-stop" aria-hidden="true"></i>
         </button>
 		<spin-box class="tempo-spin-box" :min=1 :max=200 :step=1 :precision=2 :init=120

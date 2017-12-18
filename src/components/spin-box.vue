@@ -17,14 +17,14 @@
 		}
 
 		input[type=number] {
-			background-color: transparent;;
+			background-color: transparent;
 			border: none;
 			color: #8ab9b5;
 			font-size: 20px;
-			font-weight: bold;
+			font-weight:  900;
 			margin: 0;
 			outline: none;
-			padding: 0 7px 0 5px;
+			padding: 0 15px 0 10px;
 			text-align: left;
 			&::-webkit-inner-spin-button {
 				-webkit-appearance: none;
@@ -48,12 +48,12 @@
 				background-color: #444;
 				margin: 0;
 				padding: 0 2.5px 0 2.5px;
-				width: 120%;
+				width: 140%;
 				height: 50%;
+				outline: none;
 				&:hover {
-					background-color: midnightblue;
-					color: white;
-
+					background-color: #555;
+					color: #ff5574;
 				}
 				&[data-action="up"] {
 					border-radius: 0 0 0 0;
